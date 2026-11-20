@@ -1,0 +1,41 @@
+{
+  "kappa_2x2": {
+    "table": {"judge_yes_truth_yes": 20, "judge_yes_truth_no": 5, "judge_no_truth_yes": 10, "judge_no_truth_no": 15},
+    "percent_agreement": 0.7,
+    "expected_agreement": 0.5,
+    "kappa": 0.4
+  },
+  "kappa_3x3": {
+    "pairs": [["a","a",8],["a","b",2],["b","b",6],["b","c",2],["c","c",4],["c","a",3]],
+    "percent_agreement": 0.72,
+    "expected_agreement": 0.3456,
+    "kappa": 0.5721271393643031
+  },
+  "pass_at_k": [
+    {"n": 5, "c": 2, "k": 1, "value": 0.4},
+    {"n": 5, "c": 2, "k": 2, "value": 0.7},
+    {"n": 5, "c": 2, "k": 3, "value": 0.9},
+    {"n": 5, "c": 2, "k": 4, "value": 1.0},
+    {"n": 4, "c": 0, "k": 2, "value": 0.0},
+    {"n": 4, "c": 4, "k": 2, "value": 1.0},
+    {"n": 10, "c": 3, "k": 5, "value": 0.9166666666666666}
+  ],
+  "mean_se": {
+    "values": [1, 0, 1, 1, 0, 1, 1, 1],
+    "mean": 0.75,
+    "se": 0.16366341767699427
+  },
+  "paired_difference": {
+    "a": [1, 1, 0, 1, 0],
+    "b": [1, 0, 0, 1, 1],
+    "mean_diff": 0.0,
+    "se_paired": 0.31622776601683794,
+    "se_unpaired": 0.34641016151377546
+  },
+  "bootstrap": {
+    "bernoulli_n": 1000,
+    "bernoulli_ones": 300,
+    "normal_ci": [0.27159703779002136, 0.32840296220997864],
+    "tolerance": 0.01
+  }
+}
