@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
+from .adapter import ProviderError
 from .fixtures import MissingFixture
 from .readme import update
 from .report import html_page, load_results, pr_comment, terminal_report
@@ -84,8 +85,8 @@ def main(argv=None) -> int:
     args = p.parse_args(argv)
     try:
         return args.fn(args)
-    except MissingFixture as e:
-        print(f"error: {e.args[0]}", file=sys.stderr)
+    except (MissingFixture, ProviderError, ValueError) as e:  # setup and provider problems
+        print(f"error: {e.args[0] if e.args else e}", file=sys.stderr)
         return 2
 
 

@@ -56,12 +56,10 @@ def load_judge_cases(path) -> list[JudgeCase]:
 
 
 def parse_pointwise(text: str) -> bool | None:
-    t = text.upper()
-    if "INCORRECT" in t:
-        return False
-    if "CORRECT" in t:
-        return True
-    return None
+    """Read the first word only, so "not correct" or a long explanation is not a pass."""
+    m = re.match(r"\W*([A-Za-z]+)", text)
+    word = m.group(1).upper() if m else ""
+    return {"CORRECT": True, "INCORRECT": False}.get(word)
 
 
 def parse_pairwise(text: str) -> str | None:
@@ -100,10 +98,10 @@ def run_calibration(cases: list[JudgeCase], ask, seed: int = 1, workers: int = 4
     padded = [parse_pointwise(o.text) for o in outs[n:2 * n]]
     picks = [parse_pairwise(o.text) for o in outs[2 * n:]]
     invalid = sum(v is None for v in raw + padded) + sum(p is None for p in picks)
-    # An unreadable verdict counts as "not correct": it cannot earn the judge agreement for free.
-    verdict = [bool(v) for v in raw]
-    verdict_pad = [bool(v) for v in padded]
     labels = [c.label for c in cases]
+    # An unreadable verdict always counts against the judge, so it can never look better for it.
+    verdict = [(not lab) if v is None else v for v, lab in zip(raw, labels, strict=True)]
+    verdict_pad = [(not lab) if v is None else v for v, lab in zip(padded, labels, strict=True)]
 
     by_type = {}
     for t in sorted({c.task_type for c in cases}):
@@ -118,7 +116,8 @@ def run_calibration(cases: list[JudgeCase], ask, seed: int = 1, workers: int = 4
 
     right_first = [picks[2 * i] == "A" for i in range(len(pairs))]
     right_second = [picks[2 * i + 1] == "B" for i in range(len(pairs))]
-    consistent = [rf == rs for rf, rs in zip(right_first, right_second, strict=True)]
+    consistent = [rf == rs and picks[2 * i] is not None and picks[2 * i + 1] is not None
+                  for i, (rf, rs) in enumerate(zip(right_first, right_second, strict=True))]
     picks_a = [p == "A" for p in picks]
 
     wrong_idx = [i for i, c in enumerate(cases) if not c.label]

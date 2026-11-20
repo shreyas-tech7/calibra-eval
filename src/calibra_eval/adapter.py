@@ -43,11 +43,17 @@ class OpenAICompatible:
                     data = json.loads(resp.read().decode("utf-8"))
                 break
             except urllib.error.HTTPError as e:
-                if e.code == 429 and attempt < self.max_tries:
+                if (e.code == 429 or e.code >= 500) and attempt < self.max_tries:
                     self.sleep(wait)
                     wait *= 2
                     continue
                 raise ProviderError(f"HTTP {e.code} from {self.url}") from e
+            except (urllib.error.URLError, TimeoutError) as e:
+                if attempt < self.max_tries:
+                    self.sleep(wait)
+                    wait *= 2
+                    continue
+                raise ProviderError(f"no response from {self.url}: {e}") from e
         usage = data.get("usage") or {}
         return {
             "text": data["choices"][0]["message"]["content"],

@@ -34,6 +34,9 @@ def test_parsers():
     assert parse_pointwise("CORRECT.") is True
     assert parse_pointwise("incorrect") is False
     assert parse_pointwise("maybe") is None
+    assert parse_pointwise("**CORRECT**") is True
+    assert parse_pointwise("The answer is not correct.") is None
+    assert parse_pointwise("Not correct") is None
     assert parse_pairwise(" B ") == "B"
     assert parse_pairwise("Answer A") == "A"
     assert parse_pairwise("neither") is None
@@ -92,7 +95,9 @@ def test_bias_probe_verbosity_catches_length_lean():
 def test_invalid_verdict_counts_against_the_judge():
     rep, _ = run_calibration(CASES[:4], lambda p: Output("no idea"), seed=1, n_boot=50)
     assert rep["invalid_verdicts"] == 4 * 2 + 2 * 2
-    assert rep["calibration"]["agreement"]["value"] == pytest.approx(0.5)
+    assert rep["calibration"]["agreement"]["value"] == 0.0
+    assert rep["position_probe"]["consistency"]["value"] == 0.0
+    assert rep["verbosity_probe"]["accept_wrong_raw"]["value"] == 1.0
 
 
 def test_duplicate_ids_rejected(tmp_path):

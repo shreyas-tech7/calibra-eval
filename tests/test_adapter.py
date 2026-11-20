@@ -62,6 +62,34 @@ def test_adapter_backs_off_on_429_then_gives_up():
     assert waits == [2.0, 4.0, 8.0, 16.0]
 
 
+def test_adapter_retries_server_errors_and_dropped_connections():
+    waits, errors = [], [
+        urllib.error.HTTPError("u", 503, "busy", {}, None),
+        urllib.error.URLError("connection reset"),
+        TimeoutError("read timed out"),
+    ]
+
+    def opener(req, timeout):
+        if errors:
+            raise errors.pop(0)
+        return _ok(req, timeout)
+
+    a = OpenAICompatible("http://local.test/v1", opener=opener, sleep=waits.append)
+    assert a({"model": "m"})["text"] == "hi"
+    assert waits == [2.0, 4.0, 8.0]
+
+
+def test_adapter_does_not_retry_client_errors():
+    waits = []
+
+    def opener(req, timeout):
+        raise urllib.error.HTTPError(req.full_url, 401, "no", {}, None)
+
+    with pytest.raises(ProviderError, match="401"):
+        OpenAICompatible("http://local.test/v1", opener=opener, sleep=waits.append)({"model": "m"})
+    assert waits == []
+
+
 def test_fake_model_is_deterministic_and_uses_bank():
     bank = {"q": {"good": ["right"], "bad": ["wrong1", "wrong2"]}}
     m = FakeModel("fake:coder-weak", bank)

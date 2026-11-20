@@ -58,6 +58,7 @@ def judge_rows(res: dict) -> tuple[list[str], list[list[str]]]:
         ["Percent agreement", val_ci(cal["agreement"])],
         ["Cohen's kappa", val_ci(cal["kappa"])],
         ["Judge errors", f"{len(res['errors'])} of {res['n_cases']}"],
+        ["Unreadable verdicts (scored against the judge)", str(res["invalid_verdicts"])],
         ["Position: same pick after swap", val_ci(pos["consistency"])],
         ["Position: picks answer A", val_ci(pos["picks_A_rate"])],
         ["Position: accuracy gap, right answer first minus second",

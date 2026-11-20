@@ -48,7 +48,11 @@ def run_eval_suite(cfg: dict, base: Path, mode: str, seed: int, workers: int,
     case_rows = defaultdict(dict)
     for spec in cfg["targets"]:
         target = make_target(spec, base, store, mode, seed, cfg.get("recorded_on", ""))
-        results = run_cases(cases, target, samples, workers, cache)
+        try:
+            results = run_cases(cases, target, samples, workers, cache)
+        finally:  # keep what was recorded, even when a provider error stops the run
+            if mode == "record" and store.dirty:
+                store.save()
         counts = defaultdict(int)
         for r in results:
             counts[r.case_id] += int(r.passed)
@@ -73,8 +77,6 @@ def run_eval_suite(cfg: dict, base: Path, mode: str, seed: int, workers: int,
         a, b = names[0], names[1]
         paired = {"a": a, "b": b, "metric": "per-question pass rate",
                   **paired_difference(per_question[a], per_question[b], seed, n_boot)}
-    if mode == "record" and store.dirty:
-        store.save()
     return {
         "suite": cfg["name"],
         "kind": "eval",
@@ -98,10 +100,12 @@ def run_judge_suite(cfg: dict, base: Path, mode: str, seed: int, workers: int,
     spec.setdefault("temperature", 0.0)
     spec.setdefault("max_tokens", 8)
     judge = make_target(spec, base, store, mode, seed, cfg.get("recorded_on", ""))
-    report, calls = run_calibration(cases, lambda p: judge(p, 0), seed, workers,
-                                    int(cfg.get("n_boot", 2000)))
-    if mode == "record" and store.dirty:
-        store.save()
+    try:
+        report, calls = run_calibration(cases, lambda p: judge(p, 0), seed, workers,
+                                        int(cfg.get("n_boot", 2000)))
+    finally:  # keep what was recorded, even when a provider error stops the run
+        if mode == "record" and store.dirty:
+            store.save()
     model = spec["model"]
     return {
         "suite": cfg["name"],

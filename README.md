@@ -56,6 +56,7 @@ Paired difference, strong minus weak (per-question pass rate): +0.325, paired 95
 | Percent agreement | 0.764 [0.667, 0.848] |
 | Cohen's kappa | 0.528 [0.337, 0.698] |
 | Judge errors | 17 of 72 |
+| Unreadable verdicts (scored against the judge) | 0 |
 | Position: same pick after swap | 0.500 [0.333, 0.667] |
 | Position: picks answer A | 0.667 [0.556, 0.778] |
 | Position: accuracy gap, right answer first minus second | +0.333 [0.127, 0.540] (normal CI) |
@@ -113,6 +114,7 @@ Paired difference, strong minus weak (per-question pass rate): +0.263, paired 95
 | Percent agreement | 0.764 [0.667, 0.861] |
 | Cohen's kappa | 0.528 [0.335, 0.720] |
 | Judge errors | 17 of 72 |
+| Unreadable verdicts (scored against the judge) | 0 |
 | Position: same pick after swap | 0.500 [0.333, 0.667] |
 | Position: picks answer A | 0.667 [0.556, 0.778] |
 | Position: accuracy gap, right answer first minus second | +0.333 [0.127, 0.540] (normal CI) |
@@ -168,7 +170,7 @@ Write your own suite: one JSON object per line in `cases.jsonl` with `id`, `inpu
 - 72 judge cases give wide intervals. Read the kappa interval in the table before you read the kappa value.
 - Token counts for fake models are word counts.
 - Self-enhancement bias (a judge that favors its own model's answers) needs two real model families, so it is not probed yet.
-- Code checkers run candidate code in a subprocess with a timeout. That is not a security sandbox. Only run code you trust.
+- Code checkers run candidate code in a subprocess with a timeout and an empty environment, so it never sees your API key. That is not a security sandbox. The code can still read files and use the network, so only record against models whose code you are willing to run.
 
 ## Glossary
 

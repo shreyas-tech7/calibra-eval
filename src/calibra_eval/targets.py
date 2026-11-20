@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .adapter import OpenAICompatible
+from .canon import sha256_hex
 from .fake import FakeModel
 from .fixtures import CachedModel, FixtureStore
 
@@ -36,13 +37,15 @@ def _load_function(ref: str, base: Path):
         spec.loader.exec_module(module)
     else:
         module = importlib.import_module(mod_ref)
-    return getattr(module, func)
+    return getattr(module, func), Path(module.__file__)
 
 
 class FunctionTarget:
     def __init__(self, spec: dict, base: Path):
         self.id = f"python:{spec['function']}"
-        self.fn = _load_function(spec["function"], base)
+        self.fn, source = _load_function(spec["function"], base)
+        # The disk cache key includes the file's contents, so an edit is never served stale.
+        self.cache_key = self.id + ":" + sha256_hex(source.read_bytes().decode("utf-8", "replace"))
 
     def __call__(self, case_input, sample: int) -> Output:
         start = time.perf_counter()
@@ -59,11 +62,15 @@ class ShellTarget:
         self.cwd = base
         self.timeout = spec.get("timeout_s", SHELL_TIMEOUT_S)
         self.id = "shell:" + " ".join(self.argv)
+        self.cache_key = None  # the command can change without its argv changing, so no cache
 
     def __call__(self, case_input, sample: int) -> Output:
         start = time.perf_counter()
         proc = subprocess.run(self.argv, input=json.dumps(case_input), capture_output=True,
                               text=True, cwd=self.cwd, timeout=self.timeout)
+        if proc.returncode != 0:  # a crash after the right stdout is still a crash
+            tail = proc.stderr.strip().splitlines()[-1:] or [""]
+            raise RuntimeError(f"command exited {proc.returncode} {tail[0][:200]}".strip())
         return Output(proc.stdout, latency_ms=round((time.perf_counter() - start) * 1000, 3))
 
 

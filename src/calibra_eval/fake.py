@@ -14,6 +14,7 @@ import tempfile
 from pathlib import Path
 
 from .canon import unit_float
+from .checkers import clean_env
 
 # Base chance that a bank-driven fake model picks a correct answer for a sample.
 PROFILES = {
@@ -124,7 +125,7 @@ def _runs_visible_tests(question: str, answer: str) -> bool:
         script = Path(tmp) / "judge_check.py"
         script.write_text(code + "\n" + "\n".join(asserts) + "\n", encoding="utf-8")
         try:
-            proc = subprocess.run([sys.executable, "-I", str(script)], cwd=tmp,
+            proc = subprocess.run([sys.executable, "-I", str(script)], cwd=tmp, env=clean_env(),
                                   capture_output=True, timeout=5)
         except subprocess.TimeoutExpired:
             return False

@@ -1,6 +1,7 @@
 """Code checkers: exact match, regex, JSON schema and a unit test run."""
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -11,6 +12,14 @@ from pathlib import Path
 from .schema import validate
 
 UNITTEST_TIMEOUT_S = 10
+
+
+def clean_env() -> dict:
+    """Model-written code gets PATH and nothing else, so it never sees API keys.
+
+    This is not a sandbox. The code can still read files and use the network.
+    """
+    return {"PATH": os.environ.get("PATH", "")}
 
 
 @dataclass(frozen=True)
@@ -86,6 +95,7 @@ def check_unittest(checker: dict, output: str, ground_truth=None) -> CheckResult
             proc = subprocess.run(
                 [sys.executable, "-I", str(script)],
                 cwd=tmp,
+                env=clean_env(),
                 capture_output=True,
                 text=True,
                 timeout=timeout,

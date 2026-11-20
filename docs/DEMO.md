@@ -22,6 +22,7 @@ Cases with ground truth                                  72
 Percent agreement                                        0.764 [0.667, 0.848]             
 Cohen's kappa                                            0.528 [0.337, 0.698]             
 Judge errors                                             17 of 72                         
+Unreadable verdicts (scored against the judge)           0                                
 Position: same pick after swap                           0.500 [0.333, 0.667]             
 Position: picks answer A                                 0.667 [0.556, 0.778]             
 Position: accuracy gap, right answer first minus second  +0.333 [0.127, 0.540] (normal CI)

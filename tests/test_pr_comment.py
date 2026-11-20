@@ -20,7 +20,8 @@ def test_workflow_uses_the_same_command():
     wf = (ROOT / ".github/workflows/eval-comment.yml").read_text()
     assert "calibra pr-comment" in wf
     action = (ROOT / "action.yml").read_text()
-    assert "calibra pr-comment" in action
+    assert '"$CAL" pr-comment --results' in action
+    assert "github.action_path" in action  # installs calibra itself, not the calling repo
 
 
 def test_cli_missing_fixture_is_a_clean_error(tmp_path, capsys):
@@ -31,3 +32,12 @@ def test_cli_missing_fixture_is_a_clean_error(tmp_path, capsys):
     (suite / "fixtures.jsonl").write_text("")
     assert main(["run", "--out", str(tmp_path / "out"), str(suite / "suite.toml")]) == 2
     assert "Run with --record" in capsys.readouterr().err
+
+
+def test_cli_missing_base_url_is_a_clean_error(tmp_path, capsys, monkeypatch):
+    monkeypatch.delenv("LLM_BASE_URL", raising=False)
+    (tmp_path / "c.jsonl").write_text('{"id":"a","input":"x","checker":{"type":"exact","expected":"x"}}\n')
+    suite = 'name = "s"\ncases = "c.jsonl"\n[[targets]]\nname = "m"\nmodel = "real-model"\n'
+    (tmp_path / "s.toml").write_text(suite)
+    assert main(["run", "--record", "--out", str(tmp_path / "out"), str(tmp_path / "s.toml")]) == 2
+    assert "LLM_BASE_URL" in capsys.readouterr().err

@@ -5,11 +5,12 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+from .adapter import ProviderError
 from .canon import canonical_json, sha256_hex
 from .cases import Case
 from .checkers import check
 from .fixtures import MissingFixture
-from .targets import ModelTarget, Output
+from .targets import Output
 
 
 @dataclass(frozen=True)
@@ -26,7 +27,7 @@ class SampleResult:
 
 
 class DiskCache:
-    """One JSON file per call, keyed by target id, input and sample number."""
+    """One JSON file per call, keyed by the target's cache key, the input and the sample number."""
 
     def __init__(self, folder):
         self.folder = Path(folder)
@@ -46,15 +47,16 @@ class DiskCache:
 
 
 def _call(target, case: Case, sample: int, cache: DiskCache | None) -> Output:
-    # Model targets already cache through fixtures, so the disk cache skips them.
-    use_cache = cache is not None and not isinstance(target, ModelTarget)
+    # Only Python function targets use the disk cache. Model targets cache through fixtures.
+    key = getattr(target, "cache_key", None)
+    use_cache = cache is not None and key is not None
     if use_cache:
-        hit = cache.get(target.id, case.input, sample)
+        hit = cache.get(key, case.input, sample)
         if hit is not None:
             return hit
     out = target(case.input, sample)
     if use_cache:
-        cache.put(target.id, case.input, sample, out)
+        cache.put(key, case.input, sample, out)
     return out
 
 
@@ -67,8 +69,8 @@ def run_cases(cases: list[Case], target, samples: int = 1, workers: int = 4,
         case, sample = job
         try:
             out = _call(target, case, sample, cache)
-        except MissingFixture:
-            raise
+        except (MissingFixture, ProviderError):
+            raise  # a missing fixture or a provider outage must stop the run, not lower the score
         except Exception as e:  # a crashing target is a failed case, not a crashed run
             return SampleResult(case.id, sample, False, f"target error: {e}", "", 0, 0, 0.0, False)
         res = check(case.checker, out.text, case.ground_truth)
