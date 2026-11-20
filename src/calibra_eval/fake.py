@@ -15,12 +15,16 @@ from pathlib import Path
 
 from .canon import unit_float
 
-# Chance that a bank-driven fake model picks a correct answer for a sample.
+# Base chance that a bank-driven fake model picks a correct answer for a sample.
 PROFILES = {
     "fake:coder-strong": 0.85,
     "fake:coder-weak": 0.55,
     "fake:extractor": 0.80,
 }
+
+# Every question gets a shared difficulty in [0, 1). Hard questions are hard for every fake
+# model, as with real models. That makes two models' scores correlate across questions.
+DIFFICULTY_SPREAD = 0.6
 
 JUDGE_NAME = "fake:judge-sim"
 JUDGE_NOISE = 0.06  # chance to flip a pointwise verdict
@@ -72,8 +76,11 @@ class FakeModel:
         entry = self.bank.get(prompt)
         if entry is None:
             return "I do not know."
+        difficulty = unit_float("difficulty", prompt)
+        p_good = PROFILES[self.name] - DIFFICULTY_SPREAD * (difficulty - 0.5)
+        p_good = min(0.98, max(0.02, p_good))
         u = unit_float(self.name, prompt, seed)
-        pool = entry["good"] if u < PROFILES[self.name] or not entry["bad"] else entry["bad"]
+        pool = entry["good"] if u < p_good or not entry["bad"] else entry["bad"]
         return pool[int(unit_float("pick", self.name, prompt, seed) * len(pool))]
 
 

@@ -1,0 +1,157 @@
+{
+  "cases": [
+    {
+      "extractor": "2/3",
+      "id": "order-00"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-01"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-02"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-03"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-04"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-05"
+    },
+    {
+      "extractor": "2/3",
+      "id": "order-06"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-07"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-08"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-09"
+    },
+    {
+      "extractor": "2/3",
+      "id": "order-10"
+    },
+    {
+      "extractor": "2/3",
+      "id": "order-11"
+    },
+    {
+      "extractor": "1/3",
+      "id": "order-12"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-13"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-14"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-15"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-16"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-17"
+    },
+    {
+      "extractor": "2/3",
+      "id": "order-18"
+    },
+    {
+      "extractor": "3/3",
+      "id": "order-19"
+    }
+  ],
+  "description": "20 synthetic order notes. The reply must match the schema and the ground truth.",
+  "kind": "eval",
+  "mode": "replay",
+  "n_cases": 20,
+  "paired": null,
+  "recorded_on": [
+    "2026-11-20"
+  ],
+  "samples": 3,
+  "seed": 1,
+  "suite": "json_extract",
+  "targets": [
+    {
+      "cost": {
+        "calls": 60,
+        "completion_tokens": 699,
+        "cost_usd": null,
+        "cost_usd_per_task": null,
+        "latency_ms_mean": 0.012,
+        "latency_ms_p50": 0.009,
+        "latency_ms_p95": 0.0233,
+        "prompt_tokens": 2145,
+        "tokens_exact": false,
+        "tokens_per_task": 47.4
+      },
+      "model": "fake:extractor",
+      "model_kind": "fake",
+      "name": "extractor",
+      "pass_at_k": [
+        {
+          "ci95_bootstrap": [
+            0.8,
+            0.966667
+          ],
+          "ci95_normal": [
+            0.797559,
+            0.969107
+          ],
+          "k": 1,
+          "n_questions": 20,
+          "se": 0.043763,
+          "value": 0.883333
+        },
+        {
+          "ci95_bootstrap": [
+            1.0,
+            1.0
+          ],
+          "ci95_normal": [
+            1.0,
+            1.0
+          ],
+          "k": 3,
+          "n_questions": 20,
+          "se": 0.0,
+          "value": 1.0
+        }
+      ],
+      "pass_rate": {
+        "ci95_bootstrap": [
+          0.8,
+          0.966667
+        ],
+        "ci95_normal": [
+          0.797559,
+          0.969107
+        ],
+        "n": 20,
+        "se": 0.043763,
+        "value": 0.883333
+      }
+    }
+  ]
+}

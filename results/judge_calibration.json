@@ -1,0 +1,371 @@
+{
+  "by_task_type": {
+    "code": {
+      "agreement": {
+        "ci95_bootstrap": [
+          0.582292,
+          0.916667
+        ],
+        "value": 0.75
+      },
+      "confusion": {
+        "judge_no_truth_no": 6,
+        "judge_no_truth_yes": 0,
+        "judge_yes_truth_no": 6,
+        "judge_yes_truth_yes": 12
+      },
+      "kappa": {
+        "ci95_bootstrap": [
+          0.19403,
+          0.823529
+        ],
+        "value": 0.5
+      },
+      "n": 24
+    },
+    "math": {
+      "agreement": {
+        "ci95_bootstrap": [
+          0.645833,
+          0.875
+        ],
+        "value": 0.770833
+      },
+      "confusion": {
+        "judge_no_truth_no": 18,
+        "judge_no_truth_yes": 5,
+        "judge_yes_truth_no": 6,
+        "judge_yes_truth_yes": 19
+      },
+      "kappa": {
+        "ci95_bootstrap": [
+          0.291667,
+          0.75
+        ],
+        "value": 0.541667
+      },
+      "n": 48
+    }
+  },
+  "calibration": {
+    "agreement": {
+      "ci95_bootstrap": [
+        0.666667,
+        0.847569
+      ],
+      "value": 0.763889
+    },
+    "confusion": {
+      "judge_no_truth_no": 24,
+      "judge_no_truth_yes": 5,
+      "judge_yes_truth_no": 12,
+      "judge_yes_truth_yes": 31
+    },
+    "kappa": {
+      "ci95_bootstrap": [
+        0.336899,
+        0.697748
+      ],
+      "value": 0.527778
+    },
+    "n": 72
+  },
+  "cost": {
+    "calls": 216,
+    "completion_tokens": 216,
+    "cost_usd": null,
+    "cost_usd_per_task": null,
+    "latency_ms_mean": 8.064731,
+    "latency_ms_p50": 0.029,
+    "latency_ms_p95": 39.5775,
+    "prompt_tokens": 17772,
+    "tokens_exact": false,
+    "tokens_per_task": 249.833333
+  },
+  "description": "72 graded answers (24 math and 12 code questions, one right and one wrong answer each). Labels come from checkers.",
+  "errors": [
+    {
+      "id": "math-00-right",
+      "judge": "wrong",
+      "task_type": "math",
+      "truth": "correct"
+    },
+    {
+      "id": "math-03-wrong",
+      "judge": "correct",
+      "task_type": "math",
+      "truth": "wrong"
+    },
+    {
+      "id": "math-06-right",
+      "judge": "wrong",
+      "task_type": "math",
+      "truth": "correct"
+    },
+    {
+      "id": "math-09-wrong",
+      "judge": "correct",
+      "task_type": "math",
+      "truth": "wrong"
+    },
+    {
+      "id": "math-11-wrong",
+      "judge": "correct",
+      "task_type": "math",
+      "truth": "wrong"
+    },
+    {
+      "id": "math-12-right",
+      "judge": "wrong",
+      "task_type": "math",
+      "truth": "correct"
+    },
+    {
+      "id": "math-14-right",
+      "judge": "wrong",
+      "task_type": "math",
+      "truth": "correct"
+    },
+    {
+      "id": "math-15-wrong",
+      "judge": "correct",
+      "task_type": "math",
+      "truth": "wrong"
+    },
+    {
+      "id": "math-17-wrong",
+      "judge": "correct",
+      "task_type": "math",
+      "truth": "wrong"
+    },
+    {
+      "id": "math-18-right",
+      "judge": "wrong",
+      "task_type": "math",
+      "truth": "correct"
+    },
+    {
+      "id": "math-19-wrong",
+      "judge": "correct",
+      "task_type": "math",
+      "truth": "wrong"
+    },
+    {
+      "id": "code-add-wrong",
+      "judge": "correct",
+      "task_type": "code",
+      "truth": "wrong"
+    },
+    {
+      "id": "code-reverse_words-wrong",
+      "judge": "correct",
+      "task_type": "code",
+      "truth": "wrong"
+    },
+    {
+      "id": "code-max_of-wrong",
+      "judge": "correct",
+      "task_type": "code",
+      "truth": "wrong"
+    },
+    {
+      "id": "code-factorial-wrong",
+      "judge": "correct",
+      "task_type": "code",
+      "truth": "wrong"
+    },
+    {
+      "id": "code-flatten-wrong",
+      "judge": "correct",
+      "task_type": "code",
+      "truth": "wrong"
+    },
+    {
+      "id": "code-clamp-wrong",
+      "judge": "correct",
+      "task_type": "code",
+      "truth": "wrong"
+    }
+  ],
+  "invalid_verdicts": 0,
+  "judge": {
+    "kind": "fake",
+    "model": "fake:judge-sim",
+    "name": "judge"
+  },
+  "kind": "judge",
+  "mode": "replay",
+  "n_cases": 72,
+  "n_pairs": 36,
+  "position_probe": {
+    "accuracy_gap": {
+      "ci95_bootstrap": [
+        0.111111,
+        0.527778
+      ],
+      "ci95_paired": [
+        0.126735,
+        0.539932
+      ],
+      "ci95_unpaired": [
+        0.146088,
+        0.520579
+      ],
+      "correlation": -0.254824,
+      "mean_diff": 0.333333,
+      "n_questions": 36,
+      "se_paired": 0.105409,
+      "se_unpaired": 0.095535
+    },
+    "accuracy_right_answer_first": {
+      "ci95_bootstrap": [
+        0.805556,
+        1.0
+      ],
+      "ci95_normal": [
+        0.825102,
+        1.008232
+      ],
+      "n": 36,
+      "se": 0.046718,
+      "value": 0.916667
+    },
+    "accuracy_right_answer_second": {
+      "ci95_bootstrap": [
+        0.416667,
+        0.75
+      ],
+      "ci95_normal": [
+        0.420003,
+        0.746664
+      ],
+      "n": 36,
+      "se": 0.083333,
+      "value": 0.583333
+    },
+    "consistency": {
+      "ci95_bootstrap": [
+        0.333333,
+        0.666667
+      ],
+      "ci95_normal": [
+        0.334353,
+        0.665647
+      ],
+      "n": 36,
+      "se": 0.084515,
+      "value": 0.5
+    },
+    "picks_A_rate": {
+      "ci95_bootstrap": [
+        0.555556,
+        0.777778
+      ],
+      "ci95_normal": [
+        0.557016,
+        0.776318
+      ],
+      "n": 72,
+      "se": 0.055945,
+      "value": 0.666667
+    }
+  },
+  "recorded_on": [
+    "2026-11-20"
+  ],
+  "seed": 1,
+  "suite": "judge_calibration",
+  "verbosity_probe": {
+    "accept_right_padded": {
+      "ci95_bootstrap": [
+        0.861111,
+        1.0
+      ],
+      "ci95_normal": [
+        0.868558,
+        1.020331
+      ],
+      "n": 36,
+      "se": 0.038718,
+      "value": 0.944444
+    },
+    "accept_right_raw": {
+      "ci95_bootstrap": [
+        0.75,
+        0.972222
+      ],
+      "ci95_normal": [
+        0.746539,
+        0.975683
+      ],
+      "n": 36,
+      "se": 0.058456,
+      "value": 0.861111
+    },
+    "accept_wrong_padded": {
+      "ci95_bootstrap": [
+        0.472222,
+        0.777778
+      ],
+      "ci95_normal": [
+        0.479761,
+        0.798017
+      ],
+      "n": 36,
+      "se": 0.081189,
+      "value": 0.638889
+    },
+    "accept_wrong_raw": {
+      "ci95_bootstrap": [
+        0.194444,
+        0.5
+      ],
+      "ci95_normal": [
+        0.17716,
+        0.489507
+      ],
+      "n": 36,
+      "se": 0.079682,
+      "value": 0.333333
+    },
+    "pad_chars": 307,
+    "right_padded_minus_raw": {
+      "ci95_bootstrap": [
+        0.0,
+        0.194444
+      ],
+      "ci95_paired": [
+        -0.008232,
+        0.174898
+      ],
+      "ci95_unpaired": [
+        -0.054091,
+        0.220758
+      ],
+      "correlation": 0.603909,
+      "mean_diff": 0.083333,
+      "n_questions": 36,
+      "se_paired": 0.046718,
+      "se_unpaired": 0.070116
+    },
+    "wrong_padded_minus_raw": {
+      "ci95_bootstrap": [
+        0.138889,
+        0.472222
+      ],
+      "ci95_paired": [
+        0.13413,
+        0.476981
+      ],
+      "ci95_unpaired": [
+        0.082594,
+        0.528517
+      ],
+      "correlation": 0.40893,
+      "mean_diff": 0.305556,
+      "n_questions": 36,
+      "se_paired": 0.087464,
+      "se_unpaired": 0.113758
+    }
+  }
+}

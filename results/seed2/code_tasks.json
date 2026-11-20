@@ -1,0 +1,238 @@
+{
+  "cases": [
+    {
+      "id": "code-add",
+      "strong": "2/5",
+      "weak": "2/5"
+    },
+    {
+      "id": "code-is_even",
+      "strong": "5/5",
+      "weak": "3/5"
+    },
+    {
+      "id": "code-reverse_words",
+      "strong": "4/5",
+      "weak": "2/5"
+    },
+    {
+      "id": "code-fizzbuzz",
+      "strong": "5/5",
+      "weak": "4/5"
+    },
+    {
+      "id": "code-max_of",
+      "strong": "5/5",
+      "weak": "2/5"
+    },
+    {
+      "id": "code-count_vowels",
+      "strong": "4/5",
+      "weak": "3/5"
+    },
+    {
+      "id": "code-factorial",
+      "strong": "5/5",
+      "weak": "5/5"
+    },
+    {
+      "id": "code-is_palindrome",
+      "strong": "1/5",
+      "weak": "1/5"
+    },
+    {
+      "id": "code-flatten",
+      "strong": "5/5",
+      "weak": "2/5"
+    },
+    {
+      "id": "code-dedupe",
+      "strong": "5/5",
+      "weak": "4/5"
+    },
+    {
+      "id": "code-clamp",
+      "strong": "5/5",
+      "weak": "5/5"
+    },
+    {
+      "id": "code-word_count",
+      "strong": "5/5",
+      "weak": "4/5"
+    },
+    {
+      "id": "code-median",
+      "strong": "3/5",
+      "weak": "3/5"
+    },
+    {
+      "id": "code-title_case",
+      "strong": "5/5",
+      "weak": "3/5"
+    },
+    {
+      "id": "code-gcd",
+      "strong": "3/5",
+      "weak": "1/5"
+    },
+    {
+      "id": "code-second_largest",
+      "strong": "3/5",
+      "weak": "0/5"
+    }
+  ],
+  "description": "16 small Python functions, each checked by visible and hidden unit tests.",
+  "kind": "eval",
+  "mode": "replay",
+  "n_cases": 16,
+  "paired": {
+    "a": "strong",
+    "b": "weak",
+    "ci95_bootstrap": [
+      0.15,
+      0.375
+    ],
+    "ci95_paired": [
+      0.150944,
+      0.374056
+    ],
+    "ci95_unpaired": [
+      0.073255,
+      0.451745
+    ],
+    "correlation": 0.65638,
+    "mean_diff": 0.2625,
+    "metric": "per-question pass rate",
+    "n_questions": 16,
+    "se_paired": 0.056917,
+    "se_unpaired": 0.096555
+  },
+  "recorded_on": [
+    "2026-11-20"
+  ],
+  "samples": 5,
+  "seed": 2,
+  "suite": "code_tasks",
+  "targets": [
+    {
+      "cost": {
+        "calls": 80,
+        "completion_tokens": 1012,
+        "cost_usd": null,
+        "cost_usd_per_task": null,
+        "latency_ms_mean": 0.025763,
+        "latency_ms_p50": 0.025,
+        "latency_ms_p95": 0.033,
+        "prompt_tokens": 3385,
+        "tokens_exact": false,
+        "tokens_per_task": 54.9625
+      },
+      "model": "fake:coder-strong",
+      "model_kind": "fake",
+      "name": "strong",
+      "pass_at_k": [
+        {
+          "ci95_bootstrap": [
+            0.6875,
+            0.925
+          ],
+          "ci95_normal": [
+            0.686143,
+            0.938857
+          ],
+          "k": 1,
+          "n_questions": 16,
+          "se": 0.064469,
+          "value": 0.8125
+        },
+        {
+          "ci95_bootstrap": [
+            1.0,
+            1.0
+          ],
+          "ci95_normal": [
+            1.0,
+            1.0
+          ],
+          "k": 5,
+          "n_questions": 16,
+          "se": 0.0,
+          "value": 1.0
+        }
+      ],
+      "pass_rate": {
+        "ci95_bootstrap": [
+          0.6875,
+          0.925
+        ],
+        "ci95_normal": [
+          0.686143,
+          0.938857
+        ],
+        "n": 16,
+        "se": 0.064469,
+        "value": 0.8125
+      }
+    },
+    {
+      "cost": {
+        "calls": 80,
+        "completion_tokens": 994,
+        "cost_usd": null,
+        "cost_usd_per_task": null,
+        "latency_ms_mean": 0.033337,
+        "latency_ms_p50": 0.025,
+        "latency_ms_p95": 0.04405,
+        "prompt_tokens": 3385,
+        "tokens_exact": false,
+        "tokens_per_task": 54.7375
+      },
+      "model": "fake:coder-weak",
+      "model_kind": "fake",
+      "name": "weak",
+      "pass_at_k": [
+        {
+          "ci95_bootstrap": [
+            0.4125,
+            0.6875
+          ],
+          "ci95_normal": [
+            0.409119,
+            0.690881
+          ],
+          "k": 1,
+          "n_questions": 16,
+          "se": 0.07188,
+          "value": 0.55
+        },
+        {
+          "ci95_bootstrap": [
+            0.8125,
+            1.0
+          ],
+          "ci95_normal": [
+            0.815002,
+            1.059998
+          ],
+          "k": 5,
+          "n_questions": 16,
+          "se": 0.0625,
+          "value": 0.9375
+        }
+      ],
+      "pass_rate": {
+        "ci95_bootstrap": [
+          0.4125,
+          0.6875
+        ],
+        "ci95_normal": [
+          0.409119,
+          0.690881
+        ],
+        "n": 16,
+        "se": 0.07188,
+        "value": 0.55
+      }
+    }
+  ]
+}
