@@ -16,3 +16,7 @@ One line per choice: the options weighed and the reason.
 - 2026-11-20 Social preview PNG: written with a stdlib PNG encoder and a hand-coded 5x7 bitmap font (options: Pillow, matplotlib, stdlib). The brief allows no new dependency.
 - 2026-11-20 Skills: `npx skills add` was refused by this session's permission system. Did not retry in another form. Used the superpowers skills already present and applied the Ponytail rules (small, plain, no extra layers) by hand.
 - 2026-11-20 Line length: 110 (options: 88, 100, 110). Fewer wrapped lines in the statistics and report code.
+- 2026-11-20 Commits: the first session committed core modules as one initializer commit (options: one commit per feature, grouped). The modules were written in one pass before the tests, then each key test was proved with a deliberate mutation in scripts/mutation_check.py. Later work uses one area per commit.
+- 2026-11-20 Network guard test target: 192.0.2.1, a TEST-NET documentation address (options: a public IP, TEST-NET). The mutation check then never touches a real host.
+- 2026-11-20 gitleaks: added .gitleaks.toml that extends the default rules and allows only the exact pattern key":"<64 hex>" (options: skip fixture paths, allow the pattern). Skipping paths would hide a real secret in a fixture. A planted key in a test file is still caught.
+- 2026-11-20 Unparseable judge verdicts count as 'not correct' (options: drop them, count as wrong, count as correct). Dropping them would hide failures and counting them as correct would reward them.

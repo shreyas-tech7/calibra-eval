@@ -6,7 +6,7 @@
     "steps": [
       "./init.sh"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F02",
@@ -15,7 +15,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_network_guard.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F03",
@@ -24,7 +24,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_cases.py tests/test_checkers.py tests/test_schema.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F04",
@@ -33,7 +33,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_targets.py tests/test_adapter.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F05",
@@ -42,7 +42,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_runner.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F06",
@@ -51,7 +51,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_fixtures.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F07",
@@ -60,7 +60,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_stats_reference.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F08",
@@ -69,7 +69,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_judge.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F09",
@@ -78,7 +78,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_judge.py -k bias"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F10",
@@ -87,7 +87,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_cost.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F11",
@@ -96,7 +96,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_report.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F12",
@@ -106,7 +106,7 @@
       ".venv/bin/calibra readme --check",
       ".venv/bin/pytest tests/test_readme_sync.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F13",
@@ -115,7 +115,7 @@
     "steps": [
       ".venv/bin/pytest tests/test_examples.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F14",
@@ -124,7 +124,7 @@
     "steps": [
       "bash scripts/replay_twice.sh"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F15",
@@ -152,7 +152,7 @@
       ".venv/bin/pytest tests/test_pr_comment.py",
       "actionlint"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F18",
