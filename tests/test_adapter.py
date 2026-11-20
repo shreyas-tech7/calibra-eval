@@ -93,3 +93,10 @@ def test_judge_sim_formats():
     pw = ("x\n\nQuestion:\nCompute: 1 + 1\n\nAnswer A:\nFinal answer: 3\n\nAnswer B:\n"
           "Final answer: 2\n\nWhich answer is correct? Reply with exactly one letter: A or B.")
     assert judge_sim(pw) in ("A", "B")
+
+
+def test_adapter_rejects_non_http_schemes():
+    """Broken case: urlopen would happily read file:///etc/passwd as a 'model response'."""
+    for url in ("file:///etc", "ftp://x", "localhost:8000/v1"):
+        with pytest.raises(ValueError, match="https://"):
+            OpenAICompatible(url)

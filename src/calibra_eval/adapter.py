@@ -16,6 +16,8 @@ class OpenAICompatible:
 
     def __init__(self, base_url: str, api_key_env: str = "LLM_API_KEY", timeout_s: float = 60,
                  max_tries: int = 5, first_wait_s: float = 2.0, sleep=time.sleep, opener=None):
+        if not base_url.startswith(("https://", "http://")):
+            raise ValueError(f"base_url must start with https:// or http://, got {base_url!r}")
         self.url = base_url.rstrip("/") + "/chat/completions"
         self.api_key_env = api_key_env
         self.timeout_s = timeout_s
@@ -37,7 +39,7 @@ class OpenAICompatible:
         for attempt in range(1, self.max_tries + 1):
             req = urllib.request.Request(self.url, data=body, headers=self._headers(), method="POST")
             try:
-                with self.opener(req, timeout=self.timeout_s) as resp:
+                with self.opener(req, timeout=self.timeout_s) as resp:  # noqa: S310 (scheme checked)
                     data = json.loads(resp.read().decode("utf-8"))
                 break
             except urllib.error.HTTPError as e:
