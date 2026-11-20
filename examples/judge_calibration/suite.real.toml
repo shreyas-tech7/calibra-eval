@@ -1,0 +1,17 @@
+# Record mode with a real judge on a free OpenAI-compatible endpoint.
+# Set LLM_BASE_URL (and LLM_API_KEY if the provider needs one), pick a free model, then run:
+#   calibra run --record examples/judge_calibration/suite.real.toml
+name = "judge_calibration_real"
+kind = "judge"
+description = "Same 72 graded answers, judged by a real model in record mode."
+cases = "judge_cases.jsonl"
+fixtures = "fixtures.real.jsonl"
+seed = 1
+workers = 2
+
+[judge]
+name = "judge"
+type = "model"
+model = "llama-3.1-8b-instant"
+temperature = 0.0
+max_tokens = 8
