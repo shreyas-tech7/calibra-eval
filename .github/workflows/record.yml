@@ -1,0 +1,39 @@
+name: Record (manual)
+
+# Heavy or paid-risk work runs only by hand. Uses a free OpenAI-compatible provider.
+on:
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "Free judge model id at the provider"
+        required: true
+        default: "llama-3.1-8b-instant"
+
+permissions:
+  contents: read
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: python -m pip install -e .
+      - name: Record the real judge run
+        env:
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          MODEL: ${{ inputs.model }}
+        run: |
+          sed -i "s|^model = .*|model = \"$MODEL\"|" examples/judge_calibration/suite.real.toml
+          calibra run --record examples/judge_calibration/suite.real.toml
+      - uses: actions/upload-artifact@v4
+        with:
+          name: real-judge-run
+          path: |
+            results/judge_calibration_real.json
+            examples/judge_calibration/fixtures.real.jsonl

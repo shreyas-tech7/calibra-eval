@@ -1,0 +1,27 @@
+name = "code_tasks"
+description = "16 small Python functions, each checked by visible and hidden unit tests."
+cases = "cases.jsonl"
+fixtures = "fixtures.jsonl"
+samples = 5
+k = [1, 5]
+seed = 1
+workers = 4
+recorded_on = "2026-11-20"
+
+[[targets]]
+name = "strong"
+type = "model"
+model = "fake:coder-strong"
+fake_bank = "fake_bank.json"
+system = "You are a careful Python programmer."
+temperature = 0.8
+max_tokens = 400
+
+[[targets]]
+name = "weak"
+type = "model"
+model = "fake:coder-weak"
+fake_bank = "fake_bank.json"
+system = "You are a careful Python programmer."
+temperature = 0.8
+max_tokens = 400

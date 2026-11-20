@@ -1,0 +1,15 @@
+name = "judge_calibration"
+kind = "judge"
+description = "72 graded answers (24 math and 12 code questions, one right and one wrong answer each). Labels come from checkers."
+cases = "judge_cases.jsonl"
+fixtures = "fixtures.jsonl"
+seed = 1
+workers = 4
+recorded_on = "2026-11-20"
+
+[judge]
+name = "judge"
+type = "model"
+model = "fake:judge-sim"
+temperature = 0.0
+max_tokens = 8

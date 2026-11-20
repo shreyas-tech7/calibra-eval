@@ -1,0 +1,196 @@
+[
+  {
+    "id": "F01",
+    "area": "setup",
+    "description": "./init.sh creates .venv, installs the project with dev tools, lints and runs every test offline",
+    "steps": [
+      "./init.sh"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F02",
+    "area": "safety",
+    "description": "conftest.py guard fails any test that opens a non-local network connection, proved by a test",
+    "steps": [
+      ".venv/bin/pytest tests/test_network_guard.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F03",
+    "area": "core",
+    "description": "Case loader reads JSON Lines cases and four code checkers work: exact, regex, json_schema, unittest",
+    "steps": [
+      ".venv/bin/pytest tests/test_cases.py tests/test_checkers.py tests/test_schema.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F04",
+    "area": "core",
+    "description": "Targets: Python function, shell command and model (OpenAI-compatible adapter plus deterministic fake model)",
+    "steps": [
+      ".venv/bin/pytest tests/test_targets.py tests/test_adapter.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F05",
+    "area": "core",
+    "description": "Runner calls a target over the cases with parallel workers and a disk cache",
+    "steps": [
+      ".venv/bin/pytest tests/test_runner.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F06",
+    "area": "core",
+    "description": "Record and replay: every model call saved as a fixture keyed by SHA-256 of canonical request JSON",
+    "steps": [
+      ".venv/bin/pytest tests/test_fixtures.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F07",
+    "area": "stats",
+    "description": "Statistics: mean, standard error, bootstrap CI, pass@k with CI, paired differences, kappa; checked against hand-computed reference values in tests/reference/",
+    "steps": [
+      ".venv/bin/pytest tests/test_stats_reference.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F08",
+    "area": "judge",
+    "description": "Judge calibration: percent agreement and Cohen's kappa with bootstrap CIs, on a fake judge first",
+    "steps": [
+      ".venv/bin/pytest tests/test_judge.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F09",
+    "area": "judge",
+    "description": "Bias probes: answer order swap for position bias, padding for verbosity bias",
+    "steps": [
+      ".venv/bin/pytest tests/test_judge.py -k bias"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F10",
+    "area": "core",
+    "description": "Cost and latency from tokens and timings of every call, optional price table",
+    "steps": [
+      ".venv/bin/pytest tests/test_cost.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F11",
+    "area": "reports",
+    "description": "Reports: terminal table, JSON and static HTML page",
+    "steps": [
+      ".venv/bin/pytest tests/test_report.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F12",
+    "area": "reports",
+    "description": "A script generates the README results table from result files and a test fails on any mismatch",
+    "steps": [
+      ".venv/bin/calibra readme --check",
+      ".venv/bin/pytest tests/test_readme_sync.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F13",
+    "area": "examples",
+    "description": "Three example suites: code tasks with unit tests, JSON extraction, judge calibration with 60 or more ground-truth cases committed before the first judge run",
+    "steps": [
+      ".venv/bin/pytest tests/test_examples.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F14",
+    "area": "replay",
+    "description": "A full example run replays from fixtures and writes byte-identical JSON twice in a row",
+    "steps": [
+      "bash scripts/replay_twice.sh"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F15",
+    "area": "record",
+    "description": "One recorded run on a free provider exists, labeled with date, model and seed",
+    "steps": [
+      "test -f results/record_run.json"
+    ],
+    "passes": false
+  },
+  {
+    "id": "F16",
+    "area": "judge",
+    "description": "Judge report shows agreement, kappa and both bias probes for at least one real judge model on 60+ cases",
+    "steps": [
+      "python3 -c \"import json;d=json.load(open('results/judge_calibration.json'));assert d['judge']['kind']=='real' and d['n_cases']>=60\""
+    ],
+    "passes": false
+  },
+  {
+    "id": "F17",
+    "area": "ci",
+    "description": "GitHub Action prints the results table as a pull request comment; a test renders the comment body to a file; actionlint passes",
+    "steps": [
+      ".venv/bin/pytest tests/test_pr_comment.py",
+      "actionlint"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F18",
+    "area": "quality",
+    "description": "Part 1 section 9 quality bar: README parts in order, CHANGELOG, CONTRIBUTING, issue templates, CI badge, topics, social preview 1280x640 from a script, static demo page, DEMO.md, link checker",
+    "steps": [
+      ".venv/bin/python scripts/check_links.py",
+      ".venv/bin/pytest tests/test_repo_quality.py"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F19",
+    "area": "docs",
+    "description": "Study-later kit: docs/WALKTHROUGH.md, docs/INTERVIEW_QA.md (about 15 Q&A) and DECISIONS.md",
+    "steps": [
+      "test -s docs/WALKTHROUGH.md",
+      "test -s docs/INTERVIEW_QA.md"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F20",
+    "area": "release",
+    "description": "Release check (section 11): review, gitleaks full history, pip-audit, ruff S, actionlint, link check, outside check",
+    "steps": [
+      "test -s docs/RELEASE_CHECK.md"
+    ],
+    "passes": true
+  },
+  {
+    "id": "F21",
+    "area": "release",
+    "description": "Release candidate and hand-off (section 12): CHANGELOG rc1 with SHA, docs/HUMAN_STEPS.md, docs/handoff/COWORK_PROMPT.md",
+    "steps": [
+      "test -s docs/HUMAN_STEPS.md",
+      "test -s docs/handoff/COWORK_PROMPT.md"
+    ],
+    "passes": true
+  }
+]

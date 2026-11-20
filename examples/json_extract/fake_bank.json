@@ -1,0 +1,202 @@
+{
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 1365 from Dana Costa: 9 x blue mug, ship to Porto.": {
+    "bad": [
+      "{\"order_id\": 1365, \"customer\": \"Dana Costa\", \"quantity\": \"9\", \"item\": \"blue mug\", \"city\": \"Porto\"}",
+      "{\"order_id\": 1365, \"customer\": \"Dana Costa\", \"quantity\": 9, \"item\": \"blue mug\"}",
+      "{\"order_id\": 1366, \"customer\": \"Dana Costa\", \"quantity\": 9, \"item\": \"blue mug\", \"city\": \"Porto\"}"
+    ],
+    "good": [
+      "{\"order_id\": 1365, \"customer\": \"Dana Costa\", \"quantity\": 9, \"item\": \"blue mug\", \"city\": \"Porto\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 1919 from Kofi Berg: 9 x water bottle, ship to Porto.": {
+    "bad": [
+      "{\"order_id\": 1919, \"customer\": \"Kofi Berg\", \"quantity\": \"9\", \"item\": \"water bottle\", \"city\": \"Porto\"}",
+      "{\"order_id\": 1919, \"customer\": \"Kofi Berg\", \"quantity\": 9, \"item\": \"water bottle\"}",
+      "{\"order_id\": 1920, \"customer\": \"Kofi Berg\", \"quantity\": 9, \"item\": \"water bottle\", \"city\": \"Porto\"}"
+    ],
+    "good": [
+      "{\"order_id\": 1919, \"customer\": \"Kofi Berg\", \"quantity\": 9, \"item\": \"water bottle\", \"city\": \"Porto\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 3201 from Ravi Park: 5 x desk lamp, ship to Accra.": {
+    "bad": [
+      "{\"order_id\": 3201, \"customer\": \"Ravi Park\", \"quantity\": \"5\", \"item\": \"desk lamp\", \"city\": \"Accra\"}",
+      "{\"order_id\": 3201, \"customer\": \"Ravi Park\", \"quantity\": 5, \"item\": \"desk lamp\"}",
+      "{\"order_id\": 3202, \"customer\": \"Ravi Park\", \"quantity\": 5, \"item\": \"desk lamp\", \"city\": \"Accra\"}"
+    ],
+    "good": [
+      "{\"order_id\": 3201, \"customer\": \"Ravi Park\", \"quantity\": 5, \"item\": \"desk lamp\", \"city\": \"Accra\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 4268 from Sara Kaya: 4 x backpack, ship to Denver.": {
+    "bad": [
+      "{\"order_id\": 4268, \"customer\": \"Sara Kaya\", \"quantity\": \"4\", \"item\": \"backpack\", \"city\": \"Denver\"}",
+      "{\"order_id\": 4268, \"customer\": \"Sara Kaya\", \"quantity\": 4, \"item\": \"backpack\"}",
+      "{\"order_id\": 4269, \"customer\": \"Sara Kaya\", \"quantity\": 4, \"item\": \"backpack\", \"city\": \"Denver\"}"
+    ],
+    "good": [
+      "{\"order_id\": 4268, \"customer\": \"Sara Kaya\", \"quantity\": 4, \"item\": \"backpack\", \"city\": \"Denver\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 4548 from Ada Vale: 1 x water bottle, ship to Accra.": {
+    "bad": [
+      "{\"order_id\": 4548, \"customer\": \"Ada Vale\", \"quantity\": \"1\", \"item\": \"water bottle\", \"city\": \"Accra\"}",
+      "{\"order_id\": 4548, \"customer\": \"Ada Vale\", \"quantity\": 1, \"item\": \"water bottle\"}",
+      "{\"order_id\": 4549, \"customer\": \"Ada Vale\", \"quantity\": 1, \"item\": \"water bottle\", \"city\": \"Accra\"}"
+    ],
+    "good": [
+      "{\"order_id\": 4548, \"customer\": \"Ada Vale\", \"quantity\": 1, \"item\": \"water bottle\", \"city\": \"Accra\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 5363 from Tom Haddad: 2 x tea set, ship to Austin.": {
+    "bad": [
+      "{\"order_id\": 5363, \"customer\": \"Tom Haddad\", \"quantity\": \"2\", \"item\": \"tea set\", \"city\": \"Austin\"}",
+      "{\"order_id\": 5363, \"customer\": \"Tom Haddad\", \"quantity\": 2, \"item\": \"tea set\"}",
+      "{\"order_id\": 5364, \"customer\": \"Tom Haddad\", \"quantity\": 2, \"item\": \"tea set\", \"city\": \"Austin\"}"
+    ],
+    "good": [
+      "{\"order_id\": 5363, \"customer\": \"Tom Haddad\", \"quantity\": 2, \"item\": \"tea set\", \"city\": \"Austin\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 5856 from Lee Vale: 6 x backpack, ship to Lyon.": {
+    "bad": [
+      "{\"order_id\": 5856, \"customer\": \"Lee Vale\", \"quantity\": \"6\", \"item\": \"backpack\", \"city\": \"Lyon\"}",
+      "{\"order_id\": 5856, \"customer\": \"Lee Vale\", \"quantity\": 6, \"item\": \"backpack\"}",
+      "{\"order_id\": 5857, \"customer\": \"Lee Vale\", \"quantity\": 6, \"item\": \"backpack\", \"city\": \"Lyon\"}"
+    ],
+    "good": [
+      "{\"order_id\": 5856, \"customer\": \"Lee Vale\", \"quantity\": 6, \"item\": \"backpack\", \"city\": \"Lyon\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 5970 from Mina Iyer: 8 x backpack, ship to Austin.": {
+    "bad": [
+      "{\"order_id\": 5970, \"customer\": \"Mina Iyer\", \"quantity\": \"8\", \"item\": \"backpack\", \"city\": \"Austin\"}",
+      "{\"order_id\": 5970, \"customer\": \"Mina Iyer\", \"quantity\": 8, \"item\": \"backpack\"}",
+      "{\"order_id\": 5971, \"customer\": \"Mina Iyer\", \"quantity\": 8, \"item\": \"backpack\", \"city\": \"Austin\"}"
+    ],
+    "good": [
+      "{\"order_id\": 5970, \"customer\": \"Mina Iyer\", \"quantity\": 8, \"item\": \"backpack\", \"city\": \"Austin\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 6788 from Kofi Chen: 9 x blue mug, ship to Porto.": {
+    "bad": [
+      "{\"order_id\": 6788, \"customer\": \"Kofi Chen\", \"quantity\": \"9\", \"item\": \"blue mug\", \"city\": \"Porto\"}",
+      "{\"order_id\": 6788, \"customer\": \"Kofi Chen\", \"quantity\": 9, \"item\": \"blue mug\"}",
+      "{\"order_id\": 6789, \"customer\": \"Kofi Chen\", \"quantity\": 9, \"item\": \"blue mug\", \"city\": \"Porto\"}"
+    ],
+    "good": [
+      "{\"order_id\": 6788, \"customer\": \"Kofi Chen\", \"quantity\": 9, \"item\": \"blue mug\", \"city\": \"Porto\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 7014 from Sara Vale: 6 x desk lamp, ship to Accra.": {
+    "bad": [
+      "{\"order_id\": 7014, \"customer\": \"Sara Vale\", \"quantity\": \"6\", \"item\": \"desk lamp\", \"city\": \"Accra\"}",
+      "{\"order_id\": 7014, \"customer\": \"Sara Vale\", \"quantity\": 6, \"item\": \"desk lamp\"}",
+      "{\"order_id\": 7015, \"customer\": \"Sara Vale\", \"quantity\": 6, \"item\": \"desk lamp\", \"city\": \"Accra\"}"
+    ],
+    "good": [
+      "{\"order_id\": 7014, \"customer\": \"Sara Vale\", \"quantity\": 6, \"item\": \"desk lamp\", \"city\": \"Accra\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 7448 from Ines Nair: 3 x water bottle, ship to Austin.": {
+    "bad": [
+      "{\"order_id\": 7448, \"customer\": \"Ines Nair\", \"quantity\": \"3\", \"item\": \"water bottle\", \"city\": \"Austin\"}",
+      "{\"order_id\": 7448, \"customer\": \"Ines Nair\", \"quantity\": 3, \"item\": \"water bottle\"}",
+      "{\"order_id\": 7449, \"customer\": \"Ines Nair\", \"quantity\": 3, \"item\": \"water bottle\", \"city\": \"Austin\"}"
+    ],
+    "good": [
+      "{\"order_id\": 7448, \"customer\": \"Ines Nair\", \"quantity\": 3, \"item\": \"water bottle\", \"city\": \"Austin\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 8364 from Kofi Costa: 7 x water bottle, ship to Leeds.": {
+    "bad": [
+      "{\"order_id\": 8364, \"customer\": \"Kofi Costa\", \"quantity\": \"7\", \"item\": \"water bottle\", \"city\": \"Leeds\"}",
+      "{\"order_id\": 8364, \"customer\": \"Kofi Costa\", \"quantity\": 7, \"item\": \"water bottle\"}",
+      "{\"order_id\": 8365, \"customer\": \"Kofi Costa\", \"quantity\": 7, \"item\": \"water bottle\", \"city\": \"Leeds\"}"
+    ],
+    "good": [
+      "{\"order_id\": 8364, \"customer\": \"Kofi Costa\", \"quantity\": 7, \"item\": \"water bottle\", \"city\": \"Leeds\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 8530 from Mina Ruiz: 7 x desk lamp, ship to Pune.": {
+    "bad": [
+      "{\"order_id\": 8530, \"customer\": \"Mina Ruiz\", \"quantity\": \"7\", \"item\": \"desk lamp\", \"city\": \"Pune\"}",
+      "{\"order_id\": 8530, \"customer\": \"Mina Ruiz\", \"quantity\": 7, \"item\": \"desk lamp\"}",
+      "{\"order_id\": 8531, \"customer\": \"Mina Ruiz\", \"quantity\": 7, \"item\": \"desk lamp\", \"city\": \"Pune\"}"
+    ],
+    "good": [
+      "{\"order_id\": 8530, \"customer\": \"Mina Ruiz\", \"quantity\": 7, \"item\": \"desk lamp\", \"city\": \"Pune\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 8868 from Omar Vale: 7 x backpack, ship to Pune.": {
+    "bad": [
+      "{\"order_id\": 8868, \"customer\": \"Omar Vale\", \"quantity\": \"7\", \"item\": \"backpack\", \"city\": \"Pune\"}",
+      "{\"order_id\": 8868, \"customer\": \"Omar Vale\", \"quantity\": 7, \"item\": \"backpack\"}",
+      "{\"order_id\": 8869, \"customer\": \"Omar Vale\", \"quantity\": 7, \"item\": \"backpack\", \"city\": \"Pune\"}"
+    ],
+    "good": [
+      "{\"order_id\": 8868, \"customer\": \"Omar Vale\", \"quantity\": 7, \"item\": \"backpack\", \"city\": \"Pune\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 8945 from Jon Lovel: 6 x blue mug, ship to Denver.": {
+    "bad": [
+      "{\"order_id\": 8945, \"customer\": \"Jon Lovel\", \"quantity\": \"6\", \"item\": \"blue mug\", \"city\": \"Denver\"}",
+      "{\"order_id\": 8945, \"customer\": \"Jon Lovel\", \"quantity\": 6, \"item\": \"blue mug\"}",
+      "{\"order_id\": 8946, \"customer\": \"Jon Lovel\", \"quantity\": 6, \"item\": \"blue mug\", \"city\": \"Denver\"}"
+    ],
+    "good": [
+      "{\"order_id\": 8945, \"customer\": \"Jon Lovel\", \"quantity\": 6, \"item\": \"blue mug\", \"city\": \"Denver\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 8993 from Dana Lovel: 7 x blue mug, ship to Accra.": {
+    "bad": [
+      "{\"order_id\": 8993, \"customer\": \"Dana Lovel\", \"quantity\": \"7\", \"item\": \"blue mug\", \"city\": \"Accra\"}",
+      "{\"order_id\": 8993, \"customer\": \"Dana Lovel\", \"quantity\": 7, \"item\": \"blue mug\"}",
+      "{\"order_id\": 8994, \"customer\": \"Dana Lovel\", \"quantity\": 7, \"item\": \"blue mug\", \"city\": \"Accra\"}"
+    ],
+    "good": [
+      "{\"order_id\": 8993, \"customer\": \"Dana Lovel\", \"quantity\": 7, \"item\": \"blue mug\", \"city\": \"Accra\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 9023 from Tom Ruiz: 8 x blue mug, ship to Osaka.": {
+    "bad": [
+      "{\"order_id\": 9023, \"customer\": \"Tom Ruiz\", \"quantity\": \"8\", \"item\": \"blue mug\", \"city\": \"Osaka\"}",
+      "{\"order_id\": 9023, \"customer\": \"Tom Ruiz\", \"quantity\": 8, \"item\": \"blue mug\"}",
+      "{\"order_id\": 9024, \"customer\": \"Tom Ruiz\", \"quantity\": 8, \"item\": \"blue mug\", \"city\": \"Osaka\"}"
+    ],
+    "good": [
+      "{\"order_id\": 9023, \"customer\": \"Tom Ruiz\", \"quantity\": 8, \"item\": \"blue mug\", \"city\": \"Osaka\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 9123 from Sara Haddad: 6 x water bottle, ship to Lyon.": {
+    "bad": [
+      "{\"order_id\": 9123, \"customer\": \"Sara Haddad\", \"quantity\": \"6\", \"item\": \"water bottle\", \"city\": \"Lyon\"}",
+      "{\"order_id\": 9123, \"customer\": \"Sara Haddad\", \"quantity\": 6, \"item\": \"water bottle\"}",
+      "{\"order_id\": 9124, \"customer\": \"Sara Haddad\", \"quantity\": 6, \"item\": \"water bottle\", \"city\": \"Lyon\"}"
+    ],
+    "good": [
+      "{\"order_id\": 9123, \"customer\": \"Sara Haddad\", \"quantity\": 6, \"item\": \"water bottle\", \"city\": \"Lyon\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 9330 from Lee Nair: 9 x backpack, ship to Denver.": {
+    "bad": [
+      "{\"order_id\": 9330, \"customer\": \"Lee Nair\", \"quantity\": \"9\", \"item\": \"backpack\", \"city\": \"Denver\"}",
+      "{\"order_id\": 9330, \"customer\": \"Lee Nair\", \"quantity\": 9, \"item\": \"backpack\"}",
+      "{\"order_id\": 9331, \"customer\": \"Lee Nair\", \"quantity\": 9, \"item\": \"backpack\", \"city\": \"Denver\"}"
+    ],
+    "good": [
+      "{\"order_id\": 9330, \"customer\": \"Lee Nair\", \"quantity\": 9, \"item\": \"backpack\", \"city\": \"Denver\"}"
+    ]
+  },
+  "Extract the order as JSON with keys order_id (integer), customer, quantity (integer), item and city. Reply with JSON only.\n\nText: Order 9396 from Priya Kaya: 9 x water bottle, ship to Porto.": {
+    "bad": [
+      "{\"order_id\": 9396, \"customer\": \"Priya Kaya\", \"quantity\": \"9\", \"item\": \"water bottle\", \"city\": \"Porto\"}",
+      "{\"order_id\": 9396, \"customer\": \"Priya Kaya\", \"quantity\": 9, \"item\": \"water bottle\"}",
+      "{\"order_id\": 9397, \"customer\": \"Priya Kaya\", \"quantity\": 9, \"item\": \"water bottle\", \"city\": \"Porto\"}"
+    ],
+    "good": [
+      "{\"order_id\": 9396, \"customer\": \"Priya Kaya\", \"quantity\": 9, \"item\": \"water bottle\", \"city\": \"Porto\"}"
+    ]
+  }
+}

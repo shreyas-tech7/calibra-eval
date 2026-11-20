@@ -1,0 +1,9 @@
+# Default gitleaks rules, plus one allowlist: fixture keys are SHA-256 hashes of the request,
+# not secrets. Only a 64-char lowercase hex value under the JSON key "key" is allowed.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "fixture keys are SHA-256 request hashes"
+regexTarget = "match"
+regexes = ['''^key":"[0-9a-f]{64}"$''']

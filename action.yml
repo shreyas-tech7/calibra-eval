@@ -1,0 +1,32 @@
+name: calibra-eval results comment
+description: Replay calibra-eval suites from fixtures and render the results table as a pull request comment body.
+inputs:
+  suites:
+    description: Space-separated suite TOML files
+    required: true
+outputs:
+  comment-file:
+    description: Path to the rendered Markdown comment
+    value: ${{ steps.render.outputs.comment-file }}
+runs:
+  using: composite
+  steps:
+    - name: Install calibra-eval
+      shell: bash
+      env:
+        ACTION_DIR: ${{ github.action_path }}
+      run: |
+        # Install calibra from the action's own folder, not from the calling repo.
+        python -m venv "$RUNNER_TEMP/calibra-venv"
+        "$RUNNER_TEMP/calibra-venv/bin/python" -m pip install -q -c "$ACTION_DIR/constraints.txt" "$ACTION_DIR"
+    - name: Replay and render
+      id: render
+      shell: bash
+      env:
+        SUITES: ${{ inputs.suites }}
+      run: |
+        # shellcheck disable=SC2086
+        CAL="$RUNNER_TEMP/calibra-venv/bin/calibra"
+        "$CAL" run --out "$RUNNER_TEMP/calibra-results" $SUITES
+        "$CAL" pr-comment --results "$RUNNER_TEMP/calibra-results" --out "$RUNNER_TEMP/comment.md"
+        echo "comment-file=$RUNNER_TEMP/comment.md" >> "$GITHUB_OUTPUT"
