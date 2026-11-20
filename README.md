@@ -6,7 +6,7 @@
 
 ## The problem
 
-Many teams grade their agents with an LLM judge and then trust the judge without checking it. A judge can be wrong in quiet ways. It can prefer the first answer it sees. It can reward a long answer over a short correct one. A pass rate of 0.8 on 40 questions also hides a wide margin of error.
+Many teams grade their agents with an LLM judge and then trust the judge without checking it. A judge can be wrong in quiet ways. It can prefer the first answer it sees. It can reward a long answer over a short correct one. A pass rate on a few dozen questions also hides a wide margin of error.
 
 calibra-eval is a small Python library and command line tool. It runs evals offline from recorded fixtures. Then it grades its own judge on answers whose correctness a checker already knows. It reports percent agreement, Cohen's kappa, a position bias probe and a verbosity bias probe, each with a bootstrap interval. It compares two models with paired statistics, so the interval reflects the questions they share.
 
@@ -87,7 +87,7 @@ The simulated judge reads the last number in a math answer, and it runs only the
 
 ### Seed 2 rerun
 
-The pass@5 values of 1.000 look too good, so every suite was rerun with seed 2. The seed changes every model request, so seed 2 uses its own fixtures. The fake judge ignores the request seed, so its verdicts match seed 1 and only its bootstrap intervals move.
+Some pass@k values sit at the ceiling and look too good, so every suite was rerun with seed 2. The seed changes every model request, so seed 2 uses its own fixtures. The fake judge ignores the request seed, so its verdicts match seed 1 and only its bootstrap intervals move.
 
 <!-- calibra:seed2:start -->
 **code_tasks**: 16 cases, 5 samples each, seed 2, recorded 2026-11-20, replay mode. Source: `results/seed2/code_tasks.json`.
@@ -165,7 +165,7 @@ Write your own suite: one JSON object per line in `cases.jsonl` with `id`, `inpu
 
 - No real model has been run yet. Every number above comes from simulators.
 - The fake judge's error rate is partly designed. Its kappa shows the method works, not how good any judge is.
-- 72 judge cases give wide intervals. A kappa interval about 0.4 wide is normal at this size.
+- 72 judge cases give wide intervals. Read the kappa interval in the table before you read the kappa value.
 - Token counts for fake models are word counts.
 - Self-enhancement bias (a judge that favors its own model's answers) needs two real model families, so it is not probed yet.
 - Code checkers run candidate code in a subprocess with a timeout. That is not a security sandbox. Only run code you trust.
@@ -179,7 +179,7 @@ Write your own suite: one JSON object per line in `cases.jsonl` with `id`, `inpu
 - **Judge:** a model that grades answers. calibra-eval grades the judge.
 - **Percent agreement:** how often the judge matches the checker.
 - **Cohen's kappa:** agreement corrected for chance. 0 means no better than guessing from the base rates, 1 means perfect.
-- **pass@k:** the chance that at least one of k samples passes, from the unbiased formula 1 - C(n-c, k) / C(n, k).
+- **pass@k:** the chance that at least one of k samples passes, from the unbiased formula `1 - C(n-c, k) / C(n, k)`.
 - **Paired difference:** the per-question difference between two models, averaged. Its interval is tighter when the models find the same questions hard.
 - **Bootstrap interval:** resample the questions with replacement many times and take the middle 95% of the results.
 

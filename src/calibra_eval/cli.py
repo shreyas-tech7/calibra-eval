@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
+from .fixtures import MissingFixture
 from .readme import update
 from .report import html_page, load_results, pr_comment, terminal_report
 from .suite import load_suite, run_suite, write_json
@@ -81,7 +82,11 @@ def main(argv=None) -> int:
     pc.set_defaults(fn=cmd_pr_comment)
 
     args = p.parse_args(argv)
-    return args.fn(args)
+    try:
+        return args.fn(args)
+    except MissingFixture as e:
+        print(f"error: {e.args[0]}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":

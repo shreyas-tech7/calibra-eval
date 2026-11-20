@@ -21,3 +21,13 @@ def test_workflow_uses_the_same_command():
     assert "calibra pr-comment" in wf
     action = (ROOT / "action.yml").read_text()
     assert "calibra pr-comment" in action
+
+
+def test_cli_missing_fixture_is_a_clean_error(tmp_path, capsys):
+    import shutil
+
+    suite = tmp_path / "je"
+    shutil.copytree(ROOT / "examples/json_extract", suite, ignore=shutil.ignore_patterns(".calibra_cache"))
+    (suite / "fixtures.jsonl").write_text("")
+    assert main(["run", "--out", str(tmp_path / "out"), str(suite / "suite.toml")]) == 2
+    assert "Run with --record" in capsys.readouterr().err
