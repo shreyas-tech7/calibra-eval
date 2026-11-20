@@ -1,5 +1,6 @@
 """Draw docs/social-preview.png (1280 x 640) with numpy and a stdlib PNG encoder.
-The numbers on it come from results/judge_calibration.json. Run: .venv/bin/python scripts/make_social_preview.py"""
+The numbers on it come from results/judge_calibration.json.
+Run: .venv/bin/python scripts/make_social_preview.py"""
 
 import json
 import struct
@@ -64,7 +65,8 @@ def png_bytes(img: np.ndarray) -> bytes:
         return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data))
 
     ihdr = struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)
-    return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", ihdr) + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b"")
+    body = chunk(b"IHDR", ihdr) + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b"")
+    return b"\x89PNG\r\n\x1a\n" + body
 
 
 def main() -> None:
