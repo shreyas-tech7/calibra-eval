@@ -162,7 +162,7 @@
       ".venv/bin/python scripts/check_links.py",
       ".venv/bin/pytest tests/test_repo_quality.py"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F19",
@@ -172,7 +172,7 @@
       "test -s docs/WALKTHROUGH.md",
       "test -s docs/INTERVIEW_QA.md"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F20",
@@ -181,7 +181,7 @@
     "steps": [
       "test -s docs/RELEASE_CHECK.md"
     ],
-    "passes": false
+    "passes": true
   },
   {
     "id": "F21",

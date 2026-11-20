@@ -42,7 +42,7 @@ judge is right.
   calls the model only for new requests.
 - `targets.py` defines what gets tested: a Python function, a shell command or a model.
 - `runner.py` runs a target over all cases with several threads. It keeps results in a fixed
-  order. It caches non-model calls on disk.
+  order. It caches Python function calls on disk, keyed by the function file's contents, so an edit is never served stale.
 - `stats.py` does the math: mean, standard error, bootstrap intervals, pass@k, paired
   differences, percent agreement and Cohen's kappa.
 - `judge.py` runs the judge pass. It asks the judge about each answer, then again with padding,

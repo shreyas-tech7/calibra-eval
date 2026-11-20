@@ -69,8 +69,9 @@ This is the step that turns simulated numbers into real ones (features F15 and F
    ```
 
    That makes `results/judge_calibration_real.json` and
-   `examples/judge_calibration/fixtures.real.jsonl` (216 calls). On HTTP 429 the adapter waits and
-   doubles the wait, up to 5 tries. If the provider keeps refusing, cut the judge cases to 30 and
+   `examples/judge_calibration/fixtures.real.jsonl` (216 calls). On HTTP 429, a server error or a
+   dropped connection, the adapter waits and doubles the wait, up to 5 tries. If the run still
+   stops, the calls recorded so far are saved, so the next run picks up where it stopped. If the provider keeps refusing, cut the judge cases to 30 and
    record over several sessions, then state the sample size.
 
 4. Or run the `Record (manual)` workflow from the Actions tab after you add the secret
