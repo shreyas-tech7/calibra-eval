@@ -3,6 +3,7 @@ Every number comes from a results JSON file."""
 
 import html
 import json
+import os
 from pathlib import Path
 
 
@@ -12,7 +13,8 @@ def load_results(folder) -> list[dict]:
     for f in files:
         data = json.loads(f.read_text(encoding="utf-8"))
         if data.get("kind") in ("eval", "judge"):
-            data["_file"] = f.as_posix()
+            rel = os.path.relpath(f.resolve(), Path.cwd())
+            data["_file"] = Path(f if rel.startswith("..") else rel).as_posix()
             out.append(data)
     return out
 
@@ -30,7 +32,7 @@ def val_ci(d: dict, key: str = "ci95_bootstrap") -> str:
 
 
 def diff_ci(d: dict) -> str:
-    return f"{d['mean_diff']:+.3f} {ci(d['ci95_paired'])}"
+    return f"{d['mean_diff']:+.3f} {ci(d['ci95_paired'])} (normal CI)"
 
 
 def label(res: dict) -> str:
@@ -91,8 +93,9 @@ def results_markdown(results: list[dict]) -> str:
                 p = res["paired"]
                 parts.append(
                     f"Paired difference, {p['a']} minus {p['b']} ({p['metric']}): "
-                    f"{p['mean_diff']:+.3f}, paired 95% CI {ci(p['ci95_paired'])}, "
-                    f"unpaired 95% CI {ci(p['ci95_unpaired'])}.")
+                    f"{p['mean_diff']:+.3f}, paired 95% normal CI {ci(p['ci95_paired'])}, "
+                    f"unpaired 95% normal CI {ci(p['ci95_unpaired'])}, "
+                    f"paired bootstrap CI {ci(p['ci95_bootstrap'])}.")
         else:
             head, rows = judge_rows(res)
             j = res["judge"]
