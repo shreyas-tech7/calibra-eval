@@ -14,6 +14,10 @@ First release candidate.
 - Cost and latency summary with an optional price table.
 - Reports: terminal, JSON, static HTML, pull request comment, generated README tables.
 - Three example suites with fixtures. GitHub Action for the PR comment.
+- Release check fixes: unreadable judge verdicts count against the judge, first-word verdict
+  parsing, cache keyed by file contents, retries and saved fixtures on provider errors, numpy pin.
 - Not done: a real-model run (no provider was reachable from the build machine).
 
-Release commit: see docs/HUMAN_STEPS.md (filled in at hand-off).
+Release commit: 1129e348b2925e8540d600a6e0ad90685049e291
+
+The commits after it only record this SHA and the hand-off notes. Tag this commit.

@@ -3,7 +3,9 @@
 Steps that only Shreyas can do, in order. The build session had no working GitHub token and no
 reachable model provider, so several usual steps moved here.
 
-Release commit SHA: RELEASE_SHA_PLACEHOLDER
+Release commit SHA: 1129e348b2925e8540d600a6e0ad90685049e291
+
+Commits after it on the branch only record this SHA and the hand-off notes. Tag this one.
 
 ## 1. Create the GitHub repo and push the code
 
@@ -36,7 +38,7 @@ steps locally (`./init.sh`, `calibra readme --check`, `scripts/replay_twice.sh`)
 
 ```bash
 git fetch origin
-git tag -a v0.1.0-rc1 RELEASE_SHA_PLACEHOLDER -m "Release candidate 1"
+git tag -a v0.1.0-rc1 1129e348b2925e8540d600a6e0ad90685049e291 -m "Release candidate 1"
 git push origin v0.1.0-rc1
 ```
 
