@@ -1,0 +1,36 @@
+name: Eval comment
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: eval-comment-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Replay suites and render the comment
+        id: render
+        uses: ./
+        with:
+          suites: examples/code_tasks/suite.toml examples/json_extract/suite.toml examples/judge_calibration/suite.toml
+      - name: Post the comment
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BODY_FILE: ${{ steps.render.outputs.comment-file }}
+        # Same body as: .venv/bin/calibra pr-comment --out comment.md
+        run: gh pr comment "$PR_NUMBER" --body-file "$BODY_FILE"

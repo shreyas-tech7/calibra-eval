@@ -6,11 +6,12 @@ from conftest import NetworkBlocked
 
 
 def test_guard_blocks_remote_host():
-    """Broken case: without the guard this connect would reach out (or hang) instead of raising."""
+    """Broken case: without the guard this connect would try the network.
+    192.0.2.1 is a TEST-NET documentation address (RFC 5737), so no real host is involved."""
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         with pytest.raises(NetworkBlocked):
-            s.connect(("93.184.216.34", 80))
+            s.connect(("192.0.2.1", 80))
     finally:
         s.close()
 
