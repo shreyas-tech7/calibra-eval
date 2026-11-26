@@ -91,9 +91,9 @@ judge is right.
 
 - `index.html` is the results page. It opens from disk.
 - `DEMO.md` is a real terminal transcript.
-- `PLAN.md` is the build plan. `ENVIRONMENT.md` and `TOOLING.md` record the build machine.
+- `PLAN.md` is the build plan. `ENVIRONMENT.md` records the build machine.
 - `INTERVIEW_QA.md` has questions and answers about the design.
-- `HUMAN_STEPS.md` lists what only Shreyas can do. `handoff/COWORK_PROMPT.md` helps with it.
+- `HUMAN_STEPS.md` lists what only Shreyas can do.
 - `build/BUILD_PROMPT.md` is the prompt that drove the build.
 - `GITHUB_ABOUT.md` has the repo description and topics.
 

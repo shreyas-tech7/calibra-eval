@@ -12,7 +12,7 @@ Commits after it on the branch only record this SHA and the hand-off notes. Tag 
 The build pushed to a local Git remote. A bundle of every branch is in the project files at
 `portfolio/bundles/calibra-eval.bundle`.
 
-1. On GitHub, create a new private repo named `calibra-eval` under `shreyas-tech7`. Add no README.
+1. On GitHub, create a new repo named `calibra-eval` under `shreyas-tech7`. Add no README.
 2. Download `calibra-eval.bundle`, then run:
 
    ```bash
@@ -84,8 +84,8 @@ This is the step that turns simulated numbers into real ones (features F15 and F
 
 ## 7. Make the repo public
 
-All history becomes public at that moment. Decide first whether `docs/build/BUILD_PROMPT.md`
-stays public. It is the full prompt that drove the build.
+Done 2026-11-26: the repo is public. `docs/build/BUILD_PROMPT.md`, the full prompt that drove
+the build, stays in the repo.
 
 ## 8. Fill in the About box and upload the social preview
 
