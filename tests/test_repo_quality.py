@@ -16,7 +16,7 @@ REQUIRED = ["LICENSE", "CHANGELOG.md", "CONTRIBUTING.md", ".github/ISSUE_TEMPLAT
             ".github/ISSUE_TEMPLATE/feature_request.md", ".github/workflows/ci.yml", "action.yml",
             "docs/GITHUB_ABOUT.md", "docs/social-preview.png", "docs/index.html", "docs/DEMO.md",
             "docs/WALKTHROUGH.md", "docs/INTERVIEW_QA.md", "docs/HUMAN_STEPS.md",
-            "docs/handoff/COWORK_PROMPT.md", "docs/build/BUILD_PROMPT.md", ".env.example",
+            "docs/build/BUILD_PROMPT.md", ".env.example",
             ".pre-commit-config.yaml"]
 
 

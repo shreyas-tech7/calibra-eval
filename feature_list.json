@@ -186,10 +186,9 @@
   {
     "id": "F21",
     "area": "release",
-    "description": "Release candidate and hand-off (section 12): CHANGELOG rc1 with SHA, docs/HUMAN_STEPS.md, docs/handoff/COWORK_PROMPT.md",
+    "description": "Release candidate and hand-off (section 12): CHANGELOG rc1 with SHA, docs/HUMAN_STEPS.md. The agent hand-off prompt was removed before the public release.",
     "steps": [
-      "test -s docs/HUMAN_STEPS.md",
-      "test -s docs/handoff/COWORK_PROMPT.md"
+      "test -s docs/HUMAN_STEPS.md"
     ],
     "passes": true
   }

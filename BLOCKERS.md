@@ -13,7 +13,7 @@ What failed, the exact error, and what was done instead.
 
 ## B3. Skill installs refused (open)
 - 2026-11-20: `npx -y skills add obra/superpowers ...` and the other skill installs were denied by the session permission system.
-- Instead: used the superpowers skills that were already loaded. Ponytail, caveman and humanizer rules were applied by hand. Logged in docs/TOOLING.md.
+- Instead: used the superpowers skills that were already loaded. Ponytail, caveman and humanizer rules were applied by hand.
 
 ## B4. huggingface.co, api.osv.dev and semgrep.dev blocked (open)
 - 2026-11-20: each answers `CONNECT tunnel failed, response 403`.

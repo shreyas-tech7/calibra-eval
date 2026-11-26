@@ -44,17 +44,15 @@ All numbers come from simulated models (`fake:...`), seed 1, recorded on 2026-11
 
 The full list with commands is in `docs/HUMAN_STEPS.md`.
 
-1. Create the private repo `shreyas-tech7/calibra-eval`, clone the bundle and push every branch.
+1. Create the repo `shreyas-tech7/calibra-eval`, clone the bundle and push every branch.
 2. Check that CI is green.
 3. Open the pull request, read the diff and merge it with a merge commit.
 4. Tag `v0.1.0-rc1` on the release commit.
 5. Run the secret scan once more.
 6. Add a free provider key and record the real judge run.
-7. Decide whether BUILD_PROMPT.md stays public, then make the repo public.
+7. Decide whether BUILD_PROMPT.md stays public, then make the repo public. Done 2026-11-26: the repo is public.
 8. Fill in the About box, upload the social preview, turn on Pages and pin the repo.
 9. Publish to PyPI, if you want to.
-
-`docs/handoff/COWORK_PROMPT.md` covers the free browser steps that can be undone.
 
 ## 7. Check first
 
